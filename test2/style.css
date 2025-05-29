@@ -1,0 +1,215 @@
+:root {
+  --bg-body: #2b2b2b;
+  --sidebar-bg: #141414;
+  --group1-bg: #1c1c1c;
+  --group2-bg: #333333;
+  --button-bg: #444444;
+  --button-hover-bg: #666666;
+  --tooltip-bg: rgba(0, 0, 0, 0.8);
+  --tooltip-color: #ffffff;
+  --canvas-bg: #1e1e1e;
+  --layers-bg: #1f1f1f;
+  --border-color: #555555;
+  --transition-duration: 0.3s;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  height: 100vh;
+  background: var(--bg-body);
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-section {
+  padding-left: 10px;
+  border-radius: 4px;
+}
+.tool-section h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
+}
+.tool-section.group1 {
+  background: var(--group1-bg);
+}
+.tool-section.group2 {
+  background: var(--group2-bg);
+}
+
+.tool-button {
+  position: relative;
+  background: var(--button-bg);
+  border: none;
+  padding: 10px;
+  margin: 8px 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-duration);
+}
+
+.tool-button:hover {
+  background: var(--button-hover-bg);
+}
+
+.tool-button:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 50%;
+  left: 105%;
+  transform: translateY(-50%);
+  background: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.tool-button img {
+  width: 20px;
+  height: auto;
+  display: block;
+}
+
+.main {
+  flex: 1;
+  background: var(--canvas-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#canvas-container {
+  background: var(--canvas-bg);
+  border: 2px solid var(--border-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.layers {
+  width: 220px;
+  background: var(--layers-bg);
+  padding: 20px 10px;
+  color: #fff;
+  overflow-y: auto;
+}
+.layers h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 6px;
+  overflow: auto;
+}
+
+.modal-field {
+  margin-bottom: 15px;
+}
+
+.modal-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-buttons {
+  text-align: right;
+}
+
+.modal-buttons button {
+  margin-left: 10px;
+}
+
+.side-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: var(--sidebar-bg);
+  z-index: 20;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+#rotateModal,
+#scaleModal,
+#arrangeModal,
+#adjustModal,
+#effectModal,
+#retouchModal,
+#drawingModal {
+  position: absolute;
+  z-index: 30;
+  display: none;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Effekt modalı üçün grid üslubu */
+.effects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.effects-grid .effect-btn {
+  background: var(--button-bg);
+  border: none;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  transition: background var(--transition-duration);
+}
+.effects-grid .effect-btn:hover {
+  background: var(--button-hover-bg);
+}
+.effects-grid img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
